@@ -1,0 +1,93 @@
+<div class="container-fluid mt-4 justify-content-center">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Mes patients</h2>
+        <a href="{% url 'add_patient' %}">
+            <i class="bi bi-plus-circle-fill text-success" style="font-size: 1.5rem;"></i>
+        </a>
+    </div>
+
+    <!-- En-tête -->
+    <div class="row fw-bold justify-content-center">
+        <div class="col-1"></div> <!-- Espace pour l'icône -->
+        <div class="col-4">Prénom</div>
+        <div class="col-4">Nom</div>
+        <div class="col-3">Profil</div>
+
+    <!-- C'est pour créer la ligne horizontal -->
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <hr class="border border-dark border-1 justify-content-end">
+        </div>
+    </div>
+
+    <!-- Affichage dynamique des patients paginés -->
+    {% for patient in page_obj %}
+    <div class="row align-items-center mb-2 justify-content-center align-content-center">
+        <div class="col-1">
+            <div class="d-flex align-items-center justify-content-center rounded-circle border" style="width: 50px; height: 50px; border-width: 10px; border-color: black;">
+                <i class="bi bi-person-fill" style="font-size: 1.5rem;"></i>
+            </div>
+        </div>
+        
+        <div class="col-4 text-capitalize">{{ patient.prenom }}</div>
+        <div class="col-4 text-text-uppercase">{{ patient.nom }}</div>
+        <div class="col-3">
+            <a href="{% url 'detail_patient' patient.id %}" class="btn btn-success fw-bold">Voir</a>
+        </div>
+
+    <!-- C'est pour créer la ligne horizontal -->
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <hr class="border border-dark border-1 justify-content-end">
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-center">Aucun patient trouvé.</p>
+    {% endfor %}
+
+    
+    {% if page_obj.paginator.num_pages > 1 %}
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+            <!-- Lien pour la page précédente -->
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link bg-success text-white fw-bold" href="?page={{ page_obj.previous_page_number }}" aria-label="Précédent">
+                    <i class="bi bi-caret-left-square"></i> Preview <!-- Icône Précédent -->
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">
+                    <i class="bi bi-arrow-left-circle"></i>
+                </span>
+            </li>
+            {% endif %}
+
+            <!-- Numéro de page actuel -->
+            <li class="page-item disabled">
+                <span class="page-link">
+                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            <!-- Lien pour la page suivante -->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link bg-success text-white fw-bold" href="?page={{ page_obj.next_page_number }}" aria-label="Suivant">
+                    <i class="bi bi-caret-right-square"></i> Next <!-- Icône Suivant -->
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">
+                    <i class="bi bi-arrow-right-circle"></i>
+                </span>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+

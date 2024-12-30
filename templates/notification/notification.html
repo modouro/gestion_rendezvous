@@ -1,0 +1,24 @@
+<a href="#" class="position-relative me-3 text-dark" style="font-size: 14px;">
+    <i class="bi bi-bell-fill"></i> <!-- Taille de l'icône -->
+    <!-- Badge de notification -->
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ unread_notifications_count }}
+        <span class="visually-hidden">notifications non lues</span>
+    </span>
+</a>
+
+<div class="notifications">
+    <h4>Vos notifications</h4>
+    <ul>
+        {% for notification in notifications %}
+            <li class="{{ 'read' if notification.is_read else 'unread' }}">
+                {{ notification.message }} 
+                {% if not notification.is_read %}
+                    <a href="{% url 'mark_notification_as_read' notification.id %}">Marquer comme lue</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Aucune notification</li>
+        {% endfor %}
+    </ul>
+</div>

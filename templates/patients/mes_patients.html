@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block entete %}
+
+ {% include "partials/recherche.html" %}
+ 
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% include "partials/liste_patients.html" %}
+</div>
+{% endblock %}

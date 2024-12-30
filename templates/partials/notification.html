@@ -1,0 +1,54 @@
+{% comment %} <a href="#" class="position-relative me-3 text-dark" style="font-size: 14px;">
+    <i class="bi bi-bell-fill"></i> <!-- Taille de l'icône -->
+    <!-- Badge de notification -->
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ unread_notifications_count }}
+        <span class="visually-hidden">notifications non lues</span>
+    </span>
+</a>
+ {% endcomment %}
+{% comment %} <div class="notifications">
+    <h4>Vos notifications</h4>
+    <ul>
+        {% for notification in notifications %}
+            <li class="{{ 'read' if notification.is_read else 'unread' }}">
+                {{ notification.message }} 
+                {% if not notification.is_read %}
+                    <a href="{% url 'mark_notification_as_read' notification.id %}">Marquer comme lue</a>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Aucune notification</li>
+        {% endfor %}
+    </ul>
+</div> {% endcomment %}
+
+{% comment %} <div class="container mt-4">
+    <h1>Notifications</h1>
+    <!-- Bouton pour marquer comme lues -->
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Marquer toutes comme lues</button>
+    </form>
+
+    <!-- Badge pour les notifications non lues -->
+    <div class="mt-3">
+        <i class="bi bi-bell-fill fs-4"></i>
+        <span class="badge bg-danger">
+            {{ notifications_count }}
+        </span>
+        <p>{{ notifications_count }} notifications non lues</p>
+    </div>
+
+    <!-- Liste des notifications -->
+    <ul class="list-group mt-3">
+        {% for notification in notifications %}
+            <li class="list-group-item {{ 'list-group-item-warning' if not notification.is_read else '' }}">
+                {{ notification.message }}
+                <span class="text-muted">— {{ notification.created_at|date:"d M Y, H:i" }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Aucune notification.</li>
+        {% endfor %}
+    </ul>
+</div> {% endcomment %}

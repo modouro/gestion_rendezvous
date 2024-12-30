@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Patient</title>
+    <!-- Lien Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <!-- Ajout des icônes Bootstrap -->
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 text-center my-3">
+                <!-- Image ronde centrée -->
+                <img src="{% static 'images/rv_imzge.jpg' %}" class="rounded-circle mx-auto d-block" alt="Patient" width="70" height="70">
+            </div>
+        </div>
+
+        <!-- Carte d'informations du patient -->
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-5">
+                <form method="POST"> <!-- Formulaire de type POST -->
+                    {% csrf_token %} <!-- Token CSRF pour la sécurité -->
+                    <div class="card">
+                        <div class="card-body my-5 mx-3">
+                            <!-- Vérification des erreurs du formulaire -->
+                            {% if form_p.errors %}
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        {% for field in form_p %}
+                                            {% for error in field.errors %}
+                                                <li>{{ field.label }}: {{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for error in form_p.non_field_errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            <!-- Prénom -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Prénoms :
+                                    </span>
+                                    <input type="text" class="form-control border-0" name="prenom" value="{{ patient.prenom }}" required>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i> <!-- Icône Bootstrap Pencil -->
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Nom -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Nom :
+                                    </span>
+                                    <input type="text" class="form-control border-0" name="nom" value="{{ patient.nom }}" required>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+                             <!-- Sexe -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Sexe :
+                                    </span>
+                                    <select class="form-select border-0" name="sexe" required>
+                                        <option value="M" {% if patient.sexe == "M" %}selected{% endif %}>Masculin</option>
+                                        <option value="F" {% if patient.sexe == "F" %}selected{% endif %}>Féminin</option>
+                                    </select>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Âge -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Âge :
+                                    </span>
+                                    <input type="tel" class="form-control border-0" name="age" value="{{ patient.age }}" required>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Adresse -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Adresse :
+                                    </span>
+                                    <input type="text" class="form-control border-0" name="adresse" value="{{ patient.adresse }}" required>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Téléphone -->
+                            <div class="row mb-3">
+                                <div class="col-12 d-flex align-items-center justify-content-between">
+                                    <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;">
+                                        Téléphone :
+                                    </span>
+                                    <input type="tel" class="form-control border-0" name="telephone" value="{{ patient.telephone }}" required>
+                                    <a href="#" class="ms-auto text-decoration-none">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton d'action -->
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-12 mt-2">
+                            <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+                        </div>
+                    </div>
+                </form> <!-- La balise <form> se termine ici -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS et dépendances -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

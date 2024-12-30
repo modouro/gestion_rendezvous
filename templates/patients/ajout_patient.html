@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Patient</title>
+    <!-- Lien Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <!-- Ajout des icônes Bootstrap -->
+</head>
+<body>
+     <!-- Triangle 1 -->
+     <div class="position-absolute top-0 end-0 border border-0 border-bottom border-primary bg-info" 
+     style="width: 0; height: 0; border-width: 0 120px 120px 0;"></div>
+    <!-- Triangle 2 -->
+    <div class="position-absolute top-0 end-0 border border-0 border-bottom border-info" 
+        style="width: 0; height: 0; border-width: 0 90px 90px 0; margin-top: 30px;"></div>
+
+
+
+    <div class="container mt-5">
+        <!-- Image centrée -->
+        <div class="row my-4 justify-content-center">
+            <!-- Conteneur rond bleu pour l'icône -->
+            <div class="bg-info rounded-circle d-flex align-items-center justify-content-center mx-auto" 
+                style="width: 120px; height: 120px;">
+                <i class="bi bi-person-fill text-primary" style="font-size: 5rem;"></i>
+            </div>
+        </div>
+
+        <!-- Formulaire d'ajout de patient -->
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <!-- Formulaire avec POST -->
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <!-- Afficher les erreurs générales du formulaire -->
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <!-- Affichage des champs du formulaire Django -->
+                            <div class="form-group mb-3">
+                              
+                                {{ form.prenom }}
+
+                                <!-- Erreurs pour le champ 'prenom' -->
+                                {% if form.prenom.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.prenom.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                               
+                                {{ form.nom }}
+
+                                {% if form.nom.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.nom.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                                
+                                {{ form.sexe }}
+
+                                {% if form.sexe.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.sexe.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                                
+                                {{ form.age }}
+
+                                {% if form.age.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.age.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                                
+                                {{ form.adresse }}
+                                {% if form.adresse.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.adresse.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group mb-3">
+                                
+                                {{ form.telephone }}
+
+                                {% if form.telephone.errors %}
+                                <div class="text-danger">
+                                    {% for error in form.telephone.errors %}
+                                        <small>{{ error }}</small>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <!-- Bouton de soumission -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-block">Valider</button>
+                                <a href="{% url "list_patients" %}" type="reset" class="btn btn-danger btn-block">Annuler</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS et dépendances -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

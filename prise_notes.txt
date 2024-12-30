@@ -1,0 +1,53 @@
+rendez-vous
+1-titre
+2-avec_qui
+3-date
+4-heure
+5-lieu
+
+patients:
+1-prenom
+2-nom
+3-age
+4-adresse 
+5-telephone
+
+comptes: 
+1-prenom
+2-nom
+3-email
+4-mot de passe
+
+mamadou/mane/ mamadoumane@gmail.com/Mamadou@mané
+superadmin !!  mamadou77@gmail.com//
+
+
+le reste de mon projet :
+1-- le nombre des rendez-vous automatisé 
+2--si l'eccran atteint une certain niveau cahé les autres fonds et afficher les autres
+3-- afficher la date et l'heure 
+
+???  utilisateur connecter a son cmpte 
+???  changer l'icone si elle est femme ou garson 
+??? le compte selon l'utilisateur connecter
+??? Les notifications des utilisateurs
+
+
+Sire Cisse  Mamading Cisse
+
+
+Dans votre cas, voici les relations entre les modèles :
+
+Un utilisateur peut avoir plusieurs patients.
+Un utilisateur peut avoir plusieurs rendez-vous.
+Un patient peut avoir plusieurs rendez-vous.
+
+Mon prochain défis est de faire une qu'on clique sur un item de changer les couleur 
+de l'arrére plan et du texte 
+- le nombre d'enregistrement dans la liste 
+- la modification du des rendez-vous du medecin
+
+
+>>>>> voici mon code  <a href="{% url 'register' %}" class="btn btn-primary">Commencer</a>
+             active commencer si l'utilisateur n'est pas connecter sinon un autre continuer si l(utilisateur à 
+             un compte existant et rediriger vers son pa ge connexion ou inscription

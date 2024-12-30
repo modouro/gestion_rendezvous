@@ -1,0 +1,131 @@
+    <div class="container mt-5 mx-auto">
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+            <div class="col-md-10">
+                <h1 class="text-capitalize text-break montserrat-font"> rendez-vous </h1>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center pt-5">
+             {% comment %} premier colonne 01 {% endcomment %}
+            <div class="col-md-5">
+                <div class="card text-center bg-primary">
+                    <div class="d-flex align-items-center justify-content-center mt-3">
+                         <!-- Bouton carré -->
+                         <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <div class="bg-white text-dark fw-bold d-flex align-items-center justify-content-center rounded shadow" style="width: 40px; height: 40px;">
+                                <span class="fst-italic fs-1 font-monospace">
+                                    {{ total_rendezvous }}
+                                </span>
+                            </div>
+                        </a>
+                        <!-- Cercle avec une icône -->
+                        <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                style="width: 30px; height: 30px;">
+                                <img src="/static/images/rv.png" alt="RV Icon" class="img-fluid" width="15" height="15">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Titre sous l'image et la numérotation   Liste des Rendez-vous  -->
+                    <div class="card-body">
+                        <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <h5 class="card-title text-light">Liste des Rendez-vous</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} deuxieme colonne 02   Liste des Patients   {% endcomment %}
+            <div class="col-md-5">
+                <div class="card text-center bg-success">
+                    <div class="d-flex align-items-center justify-content-center mt-3">
+
+                        <a href="{% url 'list_patients' %}" class="text-decoration-none">
+                            <div class="bg-white text-dark fw-bold d-flex align-items-center justify-content-center rounded shadow" style="width: 40px; height: 40px;">
+                                <span class="fst-italic fs-1 font-monospace">
+                                    {{ total_patients }}
+                                </span>
+                            </div>
+                        </a>
+                            <!-- Cercle avec une icône -->
+                        <a href="{% url 'list_patients' %}" class="text-decoration-none">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                 style="width: 30px; height: 30px;">
+                                <i class="bi bi-people-fill text-dark"></i>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Titre sous l'image et la numérotation -->
+                    <div class="card-body">
+                        <a href="{% url "list_patients" %}" class="text-decoration-none">
+                            <h5 class="card-title text-light">Liste des Patients</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4 mt-3 justify-content-center">
+
+            {% comment %} troisième colonne 03    Liste des Rendez-vous  {% endcomment %}
+            <div class="col-md-5">
+                <div class="card text-center bg-black">
+                    <div class="d-flex align-items-center justify-content-center mt-3">
+                        <!-- Bouton qui s'incrémente -->
+                        <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <div class="bg-white text-dark fw-bold d-flex align-items-center justify-content-center rounded shadow" style="width: 40px; height: 40px;">
+                                <span class="fst-italic fs-1 font-monospace">
+                                    {{ total_rendezvous }}
+                                </span>
+                            </div>
+                        </a>
+                        <!-- Lien avec icône ronde -->
+                        <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <!-- Cercle avec une icône -->
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                style="width: 30px; height: 30px;">
+                                <img src="/static/images/rv.png" alt="RV Icon" class="img-fluid" width="15" height="15">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Titre sous l'image et la numérotation -->
+                    <div class="card-body">
+                        <a href="{% url "lesrendezvous" %}" class="text-decoration-none">
+                            <h5 class="card-title text-light">Liste des Rendez-vous</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} quatrième colonne 04   Liste des Patients   {% endcomment %}
+            <div class="col-md-5">
+                <div class="card text-center bg-info">
+                    <div class="d-flex align-items-center justify-content-center mt-3">  
+                        <!-- Bouton qui s'incrémente -->
+                        <a href="{% url "list_patients" %}" class="text-decoration-none">
+                            <div class="bg-white text-dark fw-bold d-flex align-items-center justify-content-center rounded shadow" style="width: 40px; height: 40px;">
+                                <span class="fst-italic fs-1 font-monospace">
+                                    {{ total_patients }}
+                                </span>
+                            </div>
+                        </a>
+                            <!-- Cercle avec une icône -->
+                        <a href="{% url 'list_patients' %}" class="text-decoration-none">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                                 style="width: 30px; height: 30px;">
+                                <i class="bi bi-people-fill text-dark"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Titre sous l'image et la numérotation -->
+                    <div class="card-body">
+                        <a href="{% url "list_patients" %}" class="text-decoration-none">
+                            <h5 class="card-title text-light">
+                                Liste des Patients
+                            </h5> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

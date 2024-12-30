@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>détail du rendez-vous</title>
+    <!-- Lien Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"> <!-- Ajout des icônes Bootstrap -->
+    
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 text-center my-3">
+                <!-- Image ronde centrée -->
+                <img src="{% static "images/rv_imzge.jpg" %}" class="rounded-circle mx-auto d-block" alt="Patient" width="70" height="70">
+            </div>
+        </div>      
+
+        <!-- Carte d'informations du patient -->
+        <div class="row justify-content-center mt-3 align-items-center">
+                <div class="col-md-6">
+                    <!-- Formulaire de modification -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="card">
+                            <div class="card-body my-5 mx-3">
+                                <!-- Titre -->
+                                <div class="row mb-3">
+
+                                    <div class="col-12 d-flex align-items-center justify-content-center">
+                                        <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;" id="basic-addon1">
+                                            Titre :
+                                        </span>
+                                        <input type="text" class="form-control border-0" name="titre" aria-label="Username" aria-describedby="basic-addon1" value="{{ rendezvous.titre }}" required>                                   
+                                        <!-- Icône de modification -->
+                                        <a href="#" class="ms-auto text-decoration-none">
+                                            <i class="bi bi-pencil"></i> <!-- Icône Bootstrap Pencil -->
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!--  Nom -->
+                                <div class="row mb-3">
+
+                                    <div class="col-12 d-flex align-items-center justify-content-center">
+                                        <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;" id="basic-addon1">
+                                            Avec Qui :
+                                        </span>
+                                        <select class="form-select border-0" aria-label="Username" aria-describedby="basic-addon1" name="patient" required>
+                                            {% for patient in patients %}
+                                                <option value="{{ patient.id }}" {% if patient == rendezvous.patient %}selected{% endif %}>
+                                                    {{ patient.prenom }} {{ patient.nom }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <!-- Icône de modification -->
+                                        <a href="#" class="ms-auto text-decoration-none">
+                                            <i class="bi bi-pencil"></i> <!-- Icône Bootstrap Pencil -->
+                                        </a>
+                                    </div>                             
+                                </div>
+
+                                <!-- Date -->
+                                <div class="row mb-3">
+                                    <div class="col-12 d-flex align-items-center justify-content-center">
+                                        <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;" id="basic-addon1">
+                                            Date :
+                                        </span>
+                                        <input type="date" class="form-control border-0" name="date" aria-label="Username" aria-describedby="basic-addon1" value="{{ rendezvous.date|date:'Y-m-d' }}" required>                                   
+                                        <!-- Icône de modification -->
+                                        <a href="#" class="ms-auto text-decoration-none">
+                                            <i class="bi bi-pencil"></i> <!-- Icône Bootstrap Pencil -->
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- Heure -->
+                                <div class="row mb-3">
+                                    <div class="col-12 d-flex align-items-center justify-content-center">
+                                        <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;" id="basic-addon1">
+                                            Heure :
+                                        </span>
+                                        <input type="time" class="form-control border-0" name="heure" aria-label="Username" aria-describedby="basic-addon1" value="{{ rendezvous.heure|time:'H:i' }}" required>                                   
+                                        <!-- Icône de modification -->
+                                        <a href="#" class="ms-auto text-decoration-none">
+                                            <i class="bi bi-pencil"></i> <!-- Icône Bootstrap Pencil -->
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Lieu -->
+                                <div class="row mb-3">
+                                    <div class="col-12 d-flex align-items-center justify-content-center">
+                                        <span class="input-group-text border-0 fw-bolder" style="background-color: transparent;" id="basic-addon1">
+                                            Lieu :
+                                        </span>
+                                        <input type="text" class="form-control border-0" name="lieu" aria-label="Username" aria-describedby="basic-addon1" value="{{ rendezvous.lieu }}" required>                                   
+                                        <!-- Icône de modification -->
+                                        <a href="#" class="ms-auto text-decoration-none">
+                                            <i class="bi bi-pencil bg-black"></i> <!-- Icône Bootstrap Pencil -->
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        <!-- Bouton d'action -->
+        <div class="row justify-content-center mt-3">
+                <div class="col-md-6 mt-4">
+                    <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+                </div>
+            </div>
+
+    </form>
+    </div>
+
+    <!-- Bootstrap JS et dépendances -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
